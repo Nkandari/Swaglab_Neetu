@@ -1,6 +1,18 @@
 from selenium import webdriver
 import pytest
 
+
+
+
+@pytest.fixture(scope="class")
+def Setup(request):
+    driver = webdriver.Edge()
+    driver.maximize_window()
+    driver.get("https://www.saucedemo.com/")
+    request.cls.driver = driver
+    yield driver
+    driver.quit()
+'''
 @pytest.fixture()
 def Setup():
    driver_path = "Drivers\msedgedriver.exe"
@@ -9,4 +21,4 @@ def Setup():
    driver.get("https://www.saucedemo.com/")
    
    yield driver
-   driver.quit()
+   driver.quit()'''
